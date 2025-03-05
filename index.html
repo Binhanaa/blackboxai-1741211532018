@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق تو دو المتقدم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen font-['Cairo']">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">تطبيق تو دو المتقدم</h1>
+            <p class="text-gray-600">نظم مهامك بذكاء مع المؤقت والتصنيفات</p>
+        </header>
+
+        <!-- Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">المهام النشطة</h3>
+                <p id="activeTasks" class="text-2xl font-bold text-blue-500">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">المهام المكتملة</h3>
+                <p id="completedTasks" class="text-2xl font-bold text-green-500">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">المهام العاجلة</h3>
+                <p id="urgentTasks" class="text-2xl font-bold text-red-500">0</p>
+            </div>
+        </div>
+
+        <!-- Add Task Form -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input type="text" id="taskInput" 
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 transition-colors" 
+                    placeholder="أدخل مهمة جديدة...">
+                <div class="flex gap-2">
+                    <select id="taskCategory" class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                        <option value="general">عام</option>
+                        <option value="work">العمل</option>
+                        <option value="personal">شخصي</option>
+                        <option value="shopping">التسوق</option>
+                        <option value="study">الدراسة</option>
+                    </select>
+                    <select id="taskPriority" class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                        <option value="normal">عادي</option>
+                        <option value="important">مهم</option>
+                        <option value="urgent">عاجل</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="flex gap-2">
+                    <input type="number" id="taskTimer" 
+                        class="w-24 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500" 
+                        placeholder="دقائق">
+                    <input type="date" id="taskDueDate" 
+                        class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                </div>
+                <button id="addTask" 
+                    class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    إضافة المهمة
+                </button>
+            </div>
+            <div id="errorMessage" class="mt-2 text-red-500 text-sm hidden"></div>
+        </div>
+
+        <!-- Tasks Filter -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex flex-wrap gap-2">
+                <button id="filterAll" class="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors">الكل</button>
+                <button id="filterActive" class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors">النشطة</button>
+                <button id="filterCompleted" class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors">المكتملة</button>
+                <button id="filterUrgent" class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors">العاجلة</button>
+            </div>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">المهام</h2>
+            <div id="tasksList" class="space-y-3">
+                <!-- Tasks will be added here dynamically -->
+            </div>
+            <div id="emptyState" class="text-center text-gray-500 py-4">
+                لا توجد مهام حالياً
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
